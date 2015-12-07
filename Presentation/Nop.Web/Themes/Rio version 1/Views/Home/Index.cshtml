@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+}
+<div class="page home-page">
+    <div class="page-body">
+        @Html.Action("TopicBlock", "Topic", new { systemName = "HomePageText" })
+        @Html.Widget("home_page_top")
+        @Html.Action("HomepageCategories", "Catalog")
+        @Html.Action("HomepageProducts", "Product")
+        @Html.Action("HomepageBestSellers", "Product")
+        @Html.Action("HomePageNews", "News")
+        @Html.Action("HomePagePolls", "Poll")
+        @Html.Widget("home_page_bottom")
+        <div class="search-box">
+            <h2 align="center"> @Html.Action("SearchBox", "Catalog") </h2>
+        </div>
+    </div>
+</div>

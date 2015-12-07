@@ -1,0 +1,8 @@
+Group: Widgets
+FriendlyName: Nivo Slider DB Version
+SystemName: Widgets.Slider
+Version: 1.00
+SupportedVersions: 3.50
+Author: Hezy Ziv
+DisplayOrder: 1
+FileName: Nop.Plugin.Widgets.Slider.dll

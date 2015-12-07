@@ -1,0 +1,74 @@
+﻿@model Nop.Plugin.Widgets.Slider.Models.SliderListModel
+@{
+    Layout = "";
+    Html.AddScriptParts("~/Plugins/Widgets.Slider/Scripts/jquery.nivo.slider.js");
+    Html.AddCssFileParts("~/Plugins/Widgets.Slider/Content/slider/nivo-slider.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.Slider/Content/slider/themes/default/default.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.Slider/Content/slider/themes/light/light.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.Slider/Content/slider/themes/dark/dark.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.Slider/Content/slider/themes/bar/bar.css");
+}
+@using System
+@using Nop.Web.Framework.UI
+
+@helper RenderSliderLine(string pictureUrl, string htmlCode, string link, bool dataTransition, int pictureId)
+{
+    string caption = "";
+    if (!string.IsNullOrEmpty(htmlCode))
+    {
+        caption = "title=\"#htmlcaption" + pictureId + "\"";
+    }
+    if (string.IsNullOrEmpty(link))
+    {
+        <img src="@pictureUrl" alt="" data-thumb="@pictureUrl" @((dataTransition) ? Html.Raw("data-transition=\"slideInLeft\"") : null) @(Html.Raw(caption)) />
+    }
+    else
+    {
+       <a href="@link" target="_self">
+           <img src="@pictureUrl" alt="" data-thumb="@pictureUrl" @((dataTransition) ? Html.Raw("data-transition=\"slideInLeft\"") : null) @(Html.Raw(caption)) />
+       </a>
+    }    
+}
+
+@if (Model.AvailableSliders.Count > 0)
+{
+    foreach (var s in Model.AvailableSliders)
+    {
+        if(s.AvailableSliderPictures.Count > 0)
+        {
+            <div class="slider-wrapper @("theme-" + s.ThemeName)">
+                <div id="slider@(s.Id)" class="nivoSlider" @(Html.Raw((s.Height > 0) ? "style=\"height:" + s.Height + "px\"" : null))>
+                    @foreach (var sliderPicture in s.AvailableSliderPictures)
+                    {
+                        Write(RenderSliderLine(sliderPicture.PictureUrl, sliderPicture.HtmlCode, sliderPicture.PictureLink, sliderPicture.Transition, sliderPicture.PictureId));
+                    }
+                </div>
+            </div>
+            foreach (var sliderPicture in s.AvailableSliderPictures)
+            {
+                if (!string.IsNullOrEmpty(sliderPicture.HtmlCode))
+                {
+                    <div id="htmlcaption@(sliderPicture.PictureId)" class="nivo-html-caption">
+                        @(Html.Raw(sliderPicture.HtmlCode))
+                    </div>
+                }
+            }
+            <script type="text/javascript">
+                $(window).load(function () {
+                    $('#slider@(s.Id)').nivoSlider(
+                        {
+                            effect: '@(s.EffectName)',               // Specify sets like: 'fold,fade,sliceDown'
+                            animSpeed: @(s.AnimSpeed),                 // Slide transition speed
+                            pauseTime: @(s.PauseTime),                // How long each slide will show
+                            directionNav: @(s.DirectionNav.ToString().ToLower()),             // Next & Prev navigation
+                            controlNav: @(s.ControlNav.ToString().ToLower()),               // 1,2,3... navigation
+                            controlNavThumbs: @(s.ControlNavThumbs.ToString().ToLower()),        // Use thumbnails for Control Nav
+                            pauseOnHover: @(s.PauseOnHover.ToString().ToLower()),             // Stop animation while hovering
+                            manualAdvance: @(s.ManualAdvance.ToString().ToLower())           // Force manual transitions
+                        });
+                });
+                </script>
+        }
+    }
+}
+

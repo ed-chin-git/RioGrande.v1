@@ -1,0 +1,24 @@
+﻿@model SliderModel
+@using Nop.Plugin.Widgets.Slider.Models;
+@using Nop.Web.Framework;
+@{
+    Layout = "~/Administration/Views/Shared/_AdminLayout.cshtml";
+    //page title
+    ViewBag.Title = T("Plugins.Widgets.Slider.EditSliderDetails").Text;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "slider-form" }))
+{
+    <div class="section-header">
+        <div class="title">
+            <img src="@Url.Content("~/Administration/Content/images/ico-catalog.png")" alt="" />
+            @T("Plugins.Widgets.Slider.EditSliderDetails") - @Model.Name @Html.ActionLink("(" + T("Plugins.Widgets.Slider.BackToList") + ")", "List")
+        </div>
+        <div class="options">
+            <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
+            <input type="submit" name="save-continue" class="k-button" value="@T("Admin.Common.SaveContinue")" />
+            <span id="slider-delete" class="k-button">@T("Admin.Common.Delete")</span>
+        </div>
+    </div>
+    @Html.Partial("~/Plugins/Widgets.Slider/Views/WidgetsSlider/_CreateOrUpdate.cshtml", Model)
+}
+@Html.DeleteConfirmation("slider-delete")

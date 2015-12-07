@@ -1,0 +1,274 @@
+﻿@model SliderModel
+@using Nop.Plugin.Widgets.Slider;
+@using Nop.Plugin.Widgets.Slider.Models;
+@using Nop.Services.Events;
+@using Nop.Core.Infrastructure;
+@using Nop.Web.Framework;
+@using Nop.Web.Framework.Events;
+@using Nop.Web.Framework.UI;
+
+@{
+    Html.AddScriptParts("~/Plugins/Widgets.Slider/Scripts/jquery.nivo.slider.js");
+    Html.AddCssFileParts("~/Plugins/Widgets.Slider/Content/slider/nivo-slider.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.Slider/Content/slider/themes/default/default.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.Slider/Content/slider/themes/light/light.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.Slider/Content/slider/themes/dark/dark.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.Slider/Content/slider/themes/bar/bar.css");
+    
+}
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+
+<div id="slider-edit">
+    <ul>
+        <li @Html.RenderSelectedTabIndex(0, GetSelectedTabIndex())>
+            @T("Plugins.Widgets.Slider.Info")
+        </li>
+        <li @Html.RenderSelectedTabIndex(1, GetSelectedTabIndex())>
+            @T("Plugins.Widgets.Slider.Pictures")
+        </li>
+        <li @Html.RenderSelectedTabIndex(2, GetSelectedTabIndex())>
+            @T("Plugins.Widgets.Slider.Preview")
+        </li>
+    </ul>
+    <div>
+        @TabInfo()
+    </div>
+    <div>
+        @TabPictures()
+    </div>
+    <div>
+        @TabPreview()
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#slider-edit").kendoTabStrip({
+            animation: {
+                open: {
+                    effects: "fadeIn"
+                }
+            },
+            select: tabstrip_on_tab_select
+        });
+    });
+</script>
+
+@{
+    //custom tabs
+    var eventMessage = new AdminTabStripCreated(this.Html, "slider-edit");
+    EngineContext.Current.Resolve<IEventPublisher>().Publish(eventMessage);
+    foreach (var eventBlock in eventMessage.BlocksToRender)
+    {
+        @eventBlock
+    }
+}
+
+@*save selected tab index*@
+<input type="hidden" id="selected-tab-index" name="selected-tab-index" value="@(GetSelectedTabIndex())">
+
+
+@helper TabInfo()
+    { 
+        <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.Name):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </td>
+        </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.WidgetZone):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(model => model.WidgetZone)
+                    @Html.ValidationMessageFor(model => model.WidgetZone)
+                </td>
+                <td>
+                    <a href="http://www.nopcommerce.com/boards/t/25610/widgets-and-widgets-zones-in-310.aspx" target="_blank">Widget Zones List</a>
+                </td>
+            </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.Height):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(x => x.Height)
+                @Html.ValidationMessageFor(model => model.Height)
+            </td>
+            <td>
+                @T("Plugins.Widgets.Slider.Fields.Height.Hint")
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.Published):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(x => x.Published)
+                @Html.ValidationMessageFor(model => model.Published)
+            </td>
+        </tr>
+        <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.DisplayOrder):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(x => x.DisplayOrder)
+                    @Html.ValidationMessageFor(model => model.DisplayOrder)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding:10px 0 10px 0;">
+                   <h2>@T("Plugins.Widgets.Slider.NivoProperties")</h2> 
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.EffectName):
+                </td>
+                <td class="adminData">
+                    @Html.DropDownListFor(model => model.EffectId, ((NivoSliderEffects)Model.EffectId).ToSelectList())
+                    @Html.ValidationMessageFor(model => model.EffectId)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.ThemeName):
+                </td>
+                <td class="adminData">
+                    @Html.DropDownListFor(model => model.ThemeId, ((NivoSliderThemes)Model.ThemeId).ToSelectList())
+                    @Html.ValidationMessageFor(model => model.ThemeId)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.AnimSpeed):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(x => x.AnimSpeed)
+                    @Html.ValidationMessageFor(model => model.AnimSpeed)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.PauseTime):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(x => x.PauseTime)
+                    @Html.ValidationMessageFor(model => model.PauseTime)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.DirectionNav):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(x => x.DirectionNav)
+                    @Html.ValidationMessageFor(model => model.DirectionNav)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.ControlNav):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(x => x.ControlNav)
+                    @Html.ValidationMessageFor(model => model.ControlNav)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.ControlNavThumbs):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(x => x.ControlNavThumbs)
+                    @Html.ValidationMessageFor(model => model.ControlNavThumbs)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.PauseOnHover):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(x => x.PauseOnHover)
+                    @Html.ValidationMessageFor(model => model.PauseOnHover)
+                </td>
+            </tr>
+            <tr>
+                <td class="adminTitle">
+                    @Html.NopLabelFor(model => model.ManualAdvance):
+                </td>
+                <td class="adminData">
+                    @Html.EditorFor(x => x.ManualAdvance)
+                    @Html.ValidationMessageFor(model => model.ManualAdvance)
+                </td>
+            </tr>
+    </table>
+}
+
+@helper TabPictures()
+    {
+    @Html.Partial("~/Plugins/Widgets.Slider/Views/WidgetsSlider/_CreateOrUpdate.Pictures.cshtml", Model)
+}
+
+@helper TabPreview()
+{
+    if (Model.AvailableSliderPictures.Count > 0)
+    {
+        <h2 style="padding:10px;">@T("Plugins.Widgets.Slider.PreviewMessage")</h2>
+        <div style="width:500px;">
+            <div class="slider-wrapper @("theme-" + Model.ThemeName)">
+                <div id="slider@(Model.Id)" class="nivoSlider" @(Html.Raw((Model.Height > 0) ? "style=\"height:" + Model.Height + "px\"" : null))>
+                    @foreach (var sliderPicture in Model.AvailableSliderPictures)
+                {
+                    if (!string.IsNullOrEmpty(sliderPicture.PictureLink))
+                    {
+                <a href="@sliderPicture.PictureLink" target="_self">
+                    <img src="@sliderPicture.PictureUrl" data-transition="@((sliderPicture.Transition)? "slideInLeft":"")"
+                         title="@((!string.IsNullOrEmpty(sliderPicture.HtmlCode)) ? "#htmlcaption" + sliderPicture.PictureId : "")"
+                         data-thumb="@sliderPicture.PictureUrl" />
+                </a>
+                    }
+                    else
+                    {
+                        <img src="@sliderPicture.PictureUrl" data-transition="@((sliderPicture.Transition)? "slideInLeft":"")"
+                             title="@((!string.IsNullOrEmpty(sliderPicture.HtmlCode)) ? "#htmlcaption" + sliderPicture.PictureId : "")"
+                             data-thumb="@sliderPicture.PictureUrl" />
+                    }
+                }
+                </div>
+            </div>
+        </div>
+        foreach (var sliderPicture in Model.AvailableSliderPictures)
+        {
+            if (!string.IsNullOrEmpty(sliderPicture.HtmlCode))
+            {
+                    <div id="htmlcaption@(sliderPicture.PictureId)" class="nivo-html-caption">
+                        @(Html.Raw(sliderPicture.HtmlCode))
+                    </div>
+                }
+            }
+            <script type="text/javascript">
+                $(window).load(function () {
+                    $('#slider@(Model.Id)').nivoSlider(
+                        {
+                            effect: '@(Model.EffectName)',               // Specify sets like: 'fold,fade,sliceDown'
+                            animSpeed: @(Model.AnimSpeed),                 // Slide transition speed
+                            pauseTime: @(Model.PauseTime),                // How long each slide will show
+                            directionNav: @(Model.DirectionNav.ToString().ToLower()),             // Next & Prev navigation
+                            controlNav: @(Model.ControlNav.ToString().ToLower()),               // 1,2,3... navigation
+                            controlNavThumbs: @(Model.ControlNavThumbs.ToString().ToLower()),        // Use thumbnails for Control Nav
+                            pauseOnHover: @(Model.PauseOnHover.ToString().ToLower()),             // Stop animation while hovering
+                            manualAdvance: @(Model.ManualAdvance.ToString().ToLower())           // Force manual transitions
+                        });
+                });
+                </script>
+        } 
+
+}

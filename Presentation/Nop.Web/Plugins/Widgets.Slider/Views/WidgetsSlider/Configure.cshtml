@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "";
+}
+
+@Html.Action("StoreScopeConfiguration", "Setting", new { area = "Admin" })
+
+<h1>@T("Plugins.Widgets.Slider.Configure.Title")</h1>
+<div>
+    @T("Plugins.Widgets.Slider.Configure.Message")
+</div>
+<a href="@Url.RouteUrl("Plugin.Widgets.Slider.List")">@T("Plugins.Widgets.Slider.Configure.Link")</a>

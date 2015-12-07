@@ -1,0 +1,101 @@
+﻿@model CategoryModel
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    var canonicalUrlsEnabled = EngineContext.Current.Resolve<SeoSettings>().CanonicalUrlsEnabled;
+    if (canonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl("Category", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(categoryUrl);
+    }
+
+    var breadcrumbDelimiter = EngineContext.Current.Resolve<CommonSettings>().BreadcrumbDelimiter;
+}
+@{
+    Html.AddScriptParts("~/Scripts/jquery.magnific-popup.js");
+    Html.AddCssFileParts("~/Content/magnific-popup/magnific-popup.css");
+}
+@using Nop.Core.Domain.Common;
+@using Nop.Core.Domain.Seo;
+@using Nop.Core.Infrastructure;
+@using Nop.Web.Models.Catalog;
+@using Nop.Web.Extensions;
+@*category breadcrumb*@
+@if (Model.DisplayCategoryBreadcrumb)
+{
+    <div class="breadcrumb">
+
+        <ul>
+            <li><a href="@Url.RouteUrl("HomePage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+                <span class="delimiter">@breadcrumbDelimiter</span> </li>
+            @foreach (var cat in Model.CategoryBreadcrumb)
+            {
+                var isLastCategory = cat.Id == Model.Id;
+                <li>
+                    @if (isLastCategory)
+                    {
+                        <strong class="current-item">@cat.Name</strong>
+                    }
+                    else
+                    {
+                        <a href="@Url.RouteUrl("Category", new { SeName = cat.SeName })" title="@cat.Name">@cat.Name</a>
+                        <span class="delimiter">@breadcrumbDelimiter</span>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+}
+@Html.Widget("widgetzone.CustomerGallery.banner", Model.Id)
+<div class="page category-page">
+    <div class="page-title">
+        <h1>Customer Gallery</h1>
+    </div>
+    <div class="page-body">
+        @*description*@
+        @if (!String.IsNullOrWhiteSpace(Model.Description))
+        {
+            <div class="category-description">
+                @Html.Raw(Model.Description)
+            </div>
+        }
+@*subcategories*@
+@if (Model.SubCategories.Count > 0)
+        {
+    <div class="sub-category-grid">
+        @foreach (var item in Model.SubCategories)
+                {
+            <div class="item-box">
+                <div class="sub-category-item">
+                   @* <h2 class="title">
+                        <a href="" title="Pickups @item.Name">
+                            @item.Name
+                        </a>
+                    </h2> *@
+                    @*======== New Picture Code =====EDC=======*@
+                    <a href="@item.PictureModel.FullSizeImageUrl" title="@item.Name" id="main-product-img-lightbox-anchor-@item.Id">
+                        <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" itemprop="image" id="main-product-img-@item.Id" />
+                    </a>
+                    <script type="text/javascript">
+                            $(document).ready(function () {
+                                $('#main-product-img-lightbox-anchor-@item.Id').magnificPopup(
+                                {
+                                    type: 'image',
+                                    removalDelay: 300,
+                                    gallery: {
+                                        enabled: true
+                                    }
+                                });
+                            });
+                    </script>
+                    @*=========*@
+                </div>
+            </div>
+                }
+    </div>
+        }
+    </div>
+</div>
