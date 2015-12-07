@@ -318,7 +318,7 @@ namespace Nop.Services.Common
                             billingAddress.AddCell(new Paragraph("   " + String.Format(_localizationService.GetResource("PDFInvoice.Phone", lang.Id), order.BillingAddress.PhoneNumber), font));
                         else
                         {
-                        // Add dashes to phoneNumber ==EDC==
+                        // Add dashes to phoneNumber ===EDC===
                         var FormattedPhone = String.Format("{0:000-000-0000}", (Int64.Parse(order.BillingAddress.PhoneNumber)));
                             billingAddress.AddCell(new Paragraph("   " + String.Format(_localizationService.GetResource("PDFInvoice.Phone", lang.Id), FormattedPhone), font));
                         }
