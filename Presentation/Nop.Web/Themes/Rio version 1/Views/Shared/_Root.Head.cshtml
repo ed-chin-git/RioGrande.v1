@@ -21,7 +21,7 @@
         Html.AppendHeadCustomParts(string.Format("<meta http-equiv=\"X-UA-Compatible\" content=\"{0}\"/>", commonSettings.XuaCompatibleValue));
     }
 }
-@* Responsive Image Map resizing ==EDC==   *@
+@* Responsive Image Map resizing ===EDC===   *@
 @{
     Html.AddScriptParts("~/Scripts/ml.responsive.imagemap.js");
 }
@@ -55,7 +55,7 @@
     @RenderBody()
     @Html.NopCssFiles(this.Url, ResourceLocation.Foot)
     @Html.NopScripts(this.Url, ResourceLocation.Foot)
-    @* Responsive Image Map resizing ==EDC==   *@
+    @* Responsive Image Map resizing ===EDC===   *@
     <script type="text/javascript">
        $(document).ready(function () {mlResizeMap();} );
     </script>
