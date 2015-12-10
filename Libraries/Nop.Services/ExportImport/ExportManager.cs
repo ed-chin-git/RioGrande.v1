@@ -480,11 +480,12 @@ namespace Nop.Services.ExportImport
         }
 
         /// <summary>
-        /// Export products to XLSX
+        /// Export products to XLSX spreadsheet  
+        /// modified ===EDC== to show productCategory name instead of ID 
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="products">Products</param>
-        ///   modified ===EDC====
+        /// 
         public virtual void ExportProductsToXlsx(Stream stream, IList<Product> products)
         {
             if (stream == null)
@@ -617,7 +618,7 @@ namespace Nop.Services.ExportImport
                     foreach (var pc in _categoryService.GetProductCategoriesByProductId(p.Id))
                     {
                         //categoryIds += pc.CategoryId;  //===EDC===
-                        categoryIds += pc.Category.Name;
+                        categoryIds += pc.Category.Name;  //== Replace CategoryID with Category.name
                         categoryIds += ";";
                     }
                     worksheet.Cells[row, col].Value = categoryIds;

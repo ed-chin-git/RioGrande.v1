@@ -57,7 +57,7 @@ namespace Nop.Services.Common
         private readonly ISettingService _settingContext;
         private readonly IWebHelper _webHelper;
         private readonly IAddressAttributeFormatter _addressAttributeFormatter;
-        private readonly IEncryptionService _encryptionService; //  ==EDC== for decrypting CredCard
+        private readonly IEncryptionService _encryptionService; //  ===EDC=== for decrypting CredCard
        
         private readonly CatalogSettings _catalogSettings;
         private readonly CurrencySettings _currencySettings;
@@ -87,7 +87,7 @@ namespace Nop.Services.Common
             ISettingService settingContext,
             IWebHelper webHelper,
             IAddressAttributeFormatter addressAttributeFormatter,
-            IEncryptionService encryptionService, // ==EDC==
+            IEncryptionService encryptionService, // ===EDC===
             CatalogSettings catalogSettings, 
             CurrencySettings currencySettings,
             MeasureSettings measureSettings,
@@ -112,7 +112,7 @@ namespace Nop.Services.Common
             this._settingContext = settingContext;
             this._webHelper = webHelper;
             this._addressAttributeFormatter = addressAttributeFormatter;
-            this._encryptionService = encryptionService; // ==EDC==
+            this._encryptionService = encryptionService; // ===EDC===
             this._currencySettings = currencySettings;
             this._catalogSettings = catalogSettings;
             this._measureSettings = measureSettings;
@@ -323,7 +323,7 @@ namespace Nop.Services.Common
                             billingAddress.AddCell(new Paragraph("   " + String.Format(_localizationService.GetResource("PDFInvoice.Phone", lang.Id), FormattedPhone), font));
                         }
                 }
-                // Email ==EDC==
+                // Print out Billing address Email on Invoice ===EDC===
                 billingAddress.AddCell(new Paragraph("   " + String.Format(_localizationService.GetResource("PDFInvoice.Email", lang.Id), order.Customer.Email), font));
 
                 if (_addressSettings.FaxEnabled && !String.IsNullOrEmpty(order.BillingAddress.FaxNumber))
@@ -357,7 +357,7 @@ namespace Nop.Services.Common
                 {
                     billingAddress.AddCell(new Paragraph(" "));
                     billingAddress.AddCell(new Paragraph("   " + String.Format(_localizationService.GetResource("PDFInvoice.PaymentMethod", lang.Id), paymentMethodStr), font));
-                    // print CCcard Number  from admin section only  ==EDC== ----------------------
+                    // print CCcard Number from admin section only  ===EDC=== ----------------------
                     if (_workContext.IsAdmin)
                     {
                         if (!String.IsNullOrEmpty(order.CardNumber))
@@ -432,7 +432,7 @@ namespace Nop.Services.Common
                         if (_addressSettings.FaxEnabled && !String.IsNullOrEmpty(order.ShippingAddress.FaxNumber))
                             shippingAddress.AddCell(new Paragraph("   " + String.Format(_localizationService.GetResource("PDFInvoice.Fax", lang.Id), order.ShippingAddress.FaxNumber), font));
 
-                        // Email ==EDC
+                        // // Print out shippingAddress Email on Invoice ===EDC===
                         shippingAddress.AddCell(new Paragraph("   " + String.Format(_localizationService.GetResource("PDFInvoice.Email", lang.Id), order.Customer.Email), font));                        
 
                         if (_addressSettings.StreetAddressEnabled)
@@ -541,7 +541,7 @@ namespace Nop.Services.Common
                     var p = orderItem.Product;
                    
 
-                    //product name    ===EDC===
+                    //print out productCategory with productName    ===EDC===
                     string name = p.GetLocalized(x => x.Name, lang.Id);
                     foreach (var CategoryItem in p.ProductCategories)
                     {

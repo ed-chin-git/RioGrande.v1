@@ -1201,7 +1201,7 @@ namespace Nop.Web.Controllers
             if (model == null)
                 model = new SearchModel();
 
-            //  ===EDC====  Set Default to true for Advanced Search & Search in ProdDesc  & Search in SubCategories
+            //  ====EDC====  Set Default to true for Advanced Search & Search in ProdDesc  & Search in SubCategories
             if (Request.Params["As"] == null) model.As = true;
             if (Request.Params["Sid"] == null) model.Sid = true;
             if (Request.Params["Isc"] == null) model.Isc = true;

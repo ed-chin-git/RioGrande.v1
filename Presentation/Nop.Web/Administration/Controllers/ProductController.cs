@@ -4076,7 +4076,7 @@ namespace Nop.Admin.Controllers
             return View(model);
         }
 
-        // Generate Custom SKU   ===EDC====
+        // method to Generate Custom SKU   ===EDC===
         public String GenerateCustomSku(string PassedSKU, String PassedName)
         {
             var CustomSku = PassedSKU;   // Start with the Basic Code
@@ -4303,7 +4303,7 @@ namespace Nop.Admin.Controllers
                 { CustomSku = (CustomSku + "B"); return CustomSku; }
             if (PassedName.Contains("White"))
                 { CustomSku = (CustomSku + "W"); return CustomSku; } 
-           // ----- return -----
+           // ----- return -----  THIS SHOULD BE A TABLE in the DB ==EDC==
             return CustomSku; 
         }
 
@@ -4329,7 +4329,7 @@ namespace Nop.Admin.Controllers
                 if (existingCombination != null)
                     continue;
 
-                // Generate Custom SKU   --  rio grande pickups  ==EDC== ----------------------------------------------------------
+                // Generate Custom SKU   --  rio grande pickups  ===EDC==== ----------------------------------------------------------
                 var AttributeCombinationList = _productAttributeParser.ParseProductAttributeValues(attributesXml);  // Parse curr XML attribute combination into list-obj edc
                 bool CustomAllowOutOfStock = true;
                 int CustomStockQuantity = 1000;
