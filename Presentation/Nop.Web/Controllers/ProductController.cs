@@ -1182,6 +1182,23 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
+        [ChildActionOnly]
+        public ActionResult ProductReviewOverviewList(int productId)
+        {
+            var product = _productService.GetProductById(productId);
+            if (product == null || product.Deleted || !product.Published || !product.AllowCustomerReviews)
+                return RedirectToRoute("HomePage");
+
+            var model = new ProductReviewsModel();
+            PrepareProductReviewsModel(model, product);
+            //only registered users can leave reviews
+            if (_workContext.CurrentCustomer.IsGuest() && !_catalogSettings.AllowAnonymousUsersToReviewProduct)
+                ModelState.AddModelError("", _localizationService.GetResource("Reviews.OnlyRegisteredUsersCanWriteReviews"));
+            //default value
+            model.AddProductReview.Rating = _catalogSettings.DefaultProductRatingValue;
+            return PartialView(model);
+        }
+
         [HttpPost, ActionName("ProductReviews")]
         [FormValueRequired("add-review")]
         [CaptchaValidator]

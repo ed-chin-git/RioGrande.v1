@@ -2095,6 +2095,8 @@
     <None Include="Themes\Rio version 1\Views\Catalog\CategoryTemplate.Strat.cshtml" />
     <Content Include="Themes\Rio version 1\Views\Shared\_Root.Head.cshtml" />
     <Content Include="Themes\Rio version 1\Views\Catalog\SearchBox.cshtml" />
+    <Content Include="Themes\Rio version 1\Views\Product\_ProductReviewOverview.cshtml" />
+    <Content Include="Themes\Rio version 1\Views\Product\ProductReviewOverviewList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\bin\" />
