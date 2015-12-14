@@ -108,8 +108,6 @@
                         }
                     </div>
                     <div class="overview">
-                        <!--product reviews-->
-                        @Html.Partial("_ProductReviewOverview", Model.ProductReviewOverview)
                         <!--sample download-->
                         @Html.Partial("_DownloadSample", Model)
                         @*-- @Html.Partial("_ProductEmailAFriendButton", Model) ---EDC  deactivated: use _ShareButton for email instead ---*@
@@ -123,6 +121,10 @@
                                 @Html.Raw(Model.FullDescription)
                             </div>
                         }
+                    <div class="full-description">
+                        <!--product reviews-->
+                        @Html.Partial("_ProductReviewOverview", Model.ProductReviewOverview)
+                    </div>
                     </div>
                     @Html.Widget("productdetails_before_collateral", Model.Id)
                     <div class="product-collateral">
