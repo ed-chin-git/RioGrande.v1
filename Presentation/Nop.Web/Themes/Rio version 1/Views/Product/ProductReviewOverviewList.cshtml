@@ -8,7 +8,7 @@
         @foreach (var review in Model.Items)
         {
             int ratingPercent = review.Rating * 20;
-            < div ><div class="product-review-item">
+            <div class="product-review-item">
                 <div class="review-item-head">
                     <div class="review-title">
                         <strong>@review.Title</strong>
@@ -41,7 +41,7 @@
                         @review.WrittenOnStr
                     </span>
                 </div>
-                </div>_________________________________________________________________</div>
+          </div>
         }
     </div>
 }
