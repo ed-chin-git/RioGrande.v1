@@ -1019,14 +1019,17 @@
     <Content Include="Scripts\fineuploader\iframe.xss.response-4.2.2.js" />
     <Content Include="Scripts\fineuploader\jquery.fineuploader-4.2.2.js" />
     <Content Include="Scripts\fineuploader\jquery.fineuploader-4.2.2.min.js" />
+    <Content Include="Scripts\instagram-stream.jquery.js" />
+    <Content Include="Scripts\instaslider.jquery.js" />
+    <Content Include="Scripts\instaslider.jquery.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.custom.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.magnific-popup.js" />
-    <Content Include="Scripts\jquery.rwdImageMaps.min.js" />
     <Content Include="Scripts\jquery.tmpl.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\kendo\2014.1.318\cultures\kendo.culture.af-ZA.min.js" />
@@ -1526,6 +1529,7 @@
     <Content Include="Themes\Rio version 1\Content\images\ajax_loader_large.gif" />
     <Content Include="Themes\Rio version 1\Content\images\ajax_loader_small.gif" />
     <Content Include="Themes\Rio version 1\Content\images\arrow-up.png" />
+    <Content Include="Themes\Rio version 1\Content\images\arrow_sprite.png" />
     <Content Include="Themes\Rio version 1\Content\images\bbeditor-button-bg.gif" />
     <Content Include="Themes\Rio version 1\Content\images\bullet-left.gif" />
     <Content Include="Themes\Rio version 1\Content\images\bullet-right.gif" />
@@ -1547,6 +1551,7 @@
     <Content Include="Themes\Rio version 1\Content\images\ico-move-topic.gif" />
     <Content Include="Themes\Rio version 1\Content\images\ico-pm.png" />
     <Content Include="Themes\Rio version 1\Content\images\ico-rss.gif" />
+    <Content Include="Themes\Rio version 1\Content\images\instagram.png" />
     <Content Include="Themes\Rio version 1\Content\images\logo.gif" />
     <Content Include="Themes\Rio version 1\Content\images\mobile-menu-collapse.png" />
     <Content Include="Themes\Rio version 1\Content\images\mobile-menu-expand.png" />
@@ -2097,6 +2102,11 @@
     <Content Include="Themes\Rio version 1\Views\Catalog\SearchBox.cshtml" />
     <Content Include="Themes\Rio version 1\Views\Product\_ProductReviewOverview.cshtml" />
     <Content Include="Themes\Rio version 1\Views\Product\ProductReviewOverviewList.cshtml" />
+    <Content Include="Themes\Rio version 1\Views\Shared\_HomeColumnsThree.cshtml" />
+    <Content Include="Themes\Rio version 1\Views\Shared\_HomeColumnsOne.cshtml" />
+    <Content Include="Themes\Rio version 1\Views\Shared\_HomeColumnsTwo.cshtml" />
+    <Content Include="Themes\Rio version 1\Views\Shared\_SocialMedia.cshtml" />
+    <Content Include="Themes\Rio version 1\Views\Shared\_Root.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\bin\" />

@@ -3,7 +3,7 @@
 <div class="checkout-data">
     @Html.Widget("op_checkout_shipping_method_top")
 
-    <div> @T("checkout.shippingdisclaimer")  </div>
+
 
     <div class="section shipping-method">
         @if (Model.Warnings.Count == 0)
@@ -39,5 +39,6 @@
             </div>
         }
     </div>
+    <div> @T("checkout.shippingdisclaimer")  </div>
     @Html.Widget("op_checkout_shipping_method_bottom")
 </div>

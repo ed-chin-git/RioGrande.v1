@@ -12,28 +12,26 @@
 }
 <div class="header">
         @Html.Widget("header")    
-       <div class="admin-header-links">
-           @*-----<<EDC>>-- style="margin:0px 0px 0px 0px"-*@
-           <div class="search-box-top">
+       <div class="admin-header-links">  
+           <div class="search-box-top"> @*-----<<EDC>>---*@
                @Html.Action("SearchBox", "Catalog")
            </div>
-           @*-----------------*@
-            <div class="header-links-wrapper">
+           <div class="header-links-wrapper">
                 @Html.Action("HeaderLinks", "Common")
                 @Html.Action("FlyoutShoppingCart", "ShoppingCart")
-            </div>
-        </div>
-
+           </div>
+           @* SOCIAL MEDIA LINKS --<EDC>--*@
+           <span class="header-links-wrapper"> <span class="addthis_horizontal_follow_toolbox"></span></span>      
+       </div>
+        @*--------<<<EDC>>>----------------------------------------------------------------------------------------- *@
+        @* Large RIO Logo : logo is background of .header a{} in styles.css *@
         <a href="@Url.RouteUrl("HomePage")"> </a>
-        @*--------<<<EDC>>>-----------------------------------------------------------------------------------------
-              -- DEACTIVATED ORIGINAL CODE for 'small' logo : Now logo is background of .header a{} in styles.css --*@
-              <div class="header-logo">
-                <a href="@Url.RouteUrl("HomePage")">
-                    <img title="" alt="@storeName" src="@Url.Content(logoPath)">
-                </a>
-            </div>
-            @*---------------------------------------------------------------------------------------------------------*@
-
+        @*--ORIGINAL CODE for 'small' logo : ?? if this is removed logo disappears when viewport is minimized ?? --------*@
+        <div class="header-logo">
+            <a href="@Url.RouteUrl("HomePage")">
+                   <img title="" alt="@storeName" src="@Url.Content(logoPath)">
+            </a>
+        </div>
         <div class="header-selectors-wrapper">
             <div class="tax-display-type-selector">
                 @Html.Action("TaxTypeSelector", "Common")
@@ -46,5 +44,6 @@
             </div>
             @Html.Widget("header_selectors")
         </div>
-
-    </div>
+</div>
+<!-- Go to www.addthis.com/dashboard to customize your tools SHARE BUTTONS -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5596d864320152d9" async="async"></script>    

@@ -3,7 +3,6 @@
 @using Nop.Core.Domain.Tax
 @using Nop.Core.Infrastructure
 @using Nop.Web.Models.Common;
-
 <div class="footer">
     <div class="footer-menu-wrapper">
         <div class="column information">
@@ -111,11 +110,6 @@
     <div class="footer-disclaimer">
         @T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)
     </div>
-    @*<div class="footer-disclaimer">
-        STRAT, TELE, P-BASS & J-BASS are trademarks of Fender®.
-        ASAT is a a trademark of G&L®. P-90 is a trademark of Gibson®.
-        These companies have no affiliation with Rio Grande Guitar Pickups
-    </div>*@
     <div class="footer-store-theme">
         @Html.Action("StoreThemeSelector", "Common")
     </div>

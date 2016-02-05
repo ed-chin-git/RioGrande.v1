@@ -14,6 +14,7 @@
     Html.AppendScriptParts("~/Scripts/jquery.validate.min.js");
     Html.AppendScriptParts("~/Scripts/jquery-1.10.2.min.js");
 
+
     //X-UA-Compatible tag
     var commonSettings = EngineContext.Current.Resolve<CommonSettings>();
     if (commonSettings.RenderXuaCompatible)
@@ -24,6 +25,7 @@
 @* Responsive Image Map resizing ==EDC==   *@
 @{
     Html.AddScriptParts("~/Scripts/ml.responsive.imagemap.js");
+
 }
 <!DOCTYPE html>
 <html @Html.Partial("LanguageAttributes")>
@@ -52,12 +54,13 @@
     <!--Copyright (c) 2008-2014-->
 </head>
 <body>
-    @RenderBody()
+    @RenderBody()  @*Renders content of _Root.cshtml*@
     @Html.NopCssFiles(this.Url, ResourceLocation.Foot)
     @Html.NopScripts(this.Url, ResourceLocation.Foot)
     @* Responsive Image Map resizing ==EDC==   *@
     <script type="text/javascript">
        $(document).ready(function () {mlResizeMap();} );
     </script>
+
 </body>
 </html>

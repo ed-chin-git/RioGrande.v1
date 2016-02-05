@@ -15,3 +15,31 @@
         }
     </div>
 }
+@*---------------------------------------------------------------------------------------------------------------
+    Now i want to add a mvc web application into presentation solution folder same as Nop.Admin
+
+    so I need to do anything in the NopCommerce? when i am calling http://mySite/myArea works fine. Thanks
+    ------------------------------------------------------------------------------------------------------------
+    Here is how Nop.Admin was created:
+    1. Create Nop.Admin project located into Nop.Web\Administeration
+    2. Go to project properties > build and set 'output path' to "..\bin\" (your Nop.Web project bin directory)
+    3. Go to project properties > web and set 'use custom web server' to "http://www.nopcommerce.com/" (so only one web site is started when running the solution)
+    4. Open \Presentation\Nop.Web.Framework\Themes\ThemeableVirtualPathProviderViewEngine.cs file, find 'GetPath' method and have a look at the following code:
+    if (!string.IsNullOrEmpty(areaName) && areaName.Equals("admin", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    //admin area does not support mobile devices
+                    if (mobile)
+                    {
+                        searchedLocations = new string[0];
+                        return string.Empty;
+                    }
+                    var newLocations = areaLocations.ToList();
+                    newLocations.Insert(0, "~/Administration/Views/{1}/{0}.cshtml");
+                    newLocations.Insert(0, "~/Administration/Views/{1}/{0}.vbhtml");
+                    newLocations.Insert(0, "~/Administration/Views/Shared/{0}.cshtml");
+                    newLocations.Insert(0, "~/Administration/Views/Shared/{0}.vbhtml");
+                    areaLocations = newLocations.ToArray();
+                }
+
+    Something similar should be added for your new project
+    ----------------------------------------------------------------------------------------------------------------------------------*@

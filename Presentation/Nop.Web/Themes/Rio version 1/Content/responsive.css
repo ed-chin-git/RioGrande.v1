@@ -75,7 +75,7 @@
     .product-page-size{margin:0;text-align:left;}
     .pager{margin-right:5px;}
     /* PRODUCTS IN GRID - TEMPLATE */
-    .product-grid .item-box{margin:0 0 0 3%;width:30%;min-width:135px;max-width:155px;padding:0;}
+    .product-grid .item-box{margin:0 0 0 3%;width:30%;min-width:135px;max-width:155px;padding:0;float:none;display:inline-block;}
     .product-grid .product-item{width:auto;height:285px;}
     .product-grid .product-item .picture{width:auto;height:auto;}
     .product-grid .product-item .picture img{max-width:100%;}

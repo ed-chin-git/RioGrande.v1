@@ -60,7 +60,7 @@ input[type="text"]:disabled{background:none repeat scroll 0 0 #4B4843;}
 .header .ico-cart span,.header .ico-wishlist span{float:left;}
 .header-logo{margin-top:5px;float:left;text-align:left;}
 .header-logo a { display: none;}    /*display:table;margin:0 auto;*/
-.header-logo a img{max-width:100%;}
+.header-logo a img{width:100%;}
 .header-selectors-wrapper{text-align:right;float:right;margin-top:10px;clear:both;}
 .currency-selector{float:left;}
 .language-selector{float:right;}
@@ -544,7 +544,7 @@ td.fieldname{font-size:12px;}
 .home-page-category-grid{margin-left:auto;margin-right:auto;width:auto;zoom:1;}
 .home-page-category-grid:after{content:".";display:block;clear:both;height:0;font-size:0;line-height:0;visibility:hidden;}
 .home-page-category-grid a{color:#FFF;font-size:1.2em;font-weight:700;}
-.home-page-category-grid .item-box{float:left;text-align:center;vertical-align:text-top;}
+.home-page-category-grid .item-box{float:none;display:inline-block;text-align:center;vertical-align:text-top;}
 .home-page-category-grid .category-item{text-align:center;margin:10px;width:145px;height:180px;border:3px solid #000;}
 .home-page-category-grid .category-item .title{text-align:center;font-weight:700;font-size:.9em;display:block;overflow:hidden;padding:5px;}
 .home-page-category-grid .category-item .picture{text-align:center;padding:10px 0;}
@@ -555,7 +555,7 @@ td.fieldname{font-size:12px;}
 /* PRODUCTS IN GRID - TEMPLATE */
 .product-grid{margin-bottom:15px;margin-left:auto;margin-right:auto;width:auto;text-align:center;zoom:1;}
 .product-grid:after{content:".";display:block;clear:both;height:0;font-size:0;line-height:0;visibility:hidden;}
-.product-grid .item-box{float:left;text-align:center;vertical-align:text-top;}
+.product-grid .item-box{float:none;display:inline-block;text-align:center;vertical-align:text-top;}
 .product-grid .item-box:hover{background:transparent;}
 .product-grid .product-item{text-align:left;margin:0;padding:0;width:170px;height:270px;}
 
@@ -623,13 +623,13 @@ td.fieldname{font-size:12px;}
 
 
 /* Styles used in OTHER THAN CategoryTemplateProductsinGridOrLines */
-.sub-category-grid,.manufacturer-grid{margin-left:auto;margin-right:auto;width:auto;margin-bottom:1px;zoom:1;}
+.sub-category-grid,.manufacturer-grid{text-align:center; margin-left:auto;margin-right:auto;width:auto;margin-bottom:1px;zoom:1;}
 .sub-category-grid:after,.manufacturer-grid:after{content:".";display:block;clear:both;height:0;font-size:0;line-height:0;visibility:hidden;}
 .sub-category-grid a,.manufacturer-grid a{color:#FFF;font-size:1.4em;font-weight:700;}
 /*<EDC==  sets picture img size   */
 .sub-category-grid a img { width:285px;height:212px;border-radius:10px;background:transparent; }
 /*==EDC>*/
-.sub-category-grid .item-box,.manufacturer-grid .item-box{float:left;text-align:center;vertical-align:text-top;}
+.sub-category-grid .item-box,.manufacturer-grid .item-box{float:none;text-align:center;vertical-align:text-top;display:inline-block}
 /*<EDC==  sets Block size   */
 .sub-category-grid .sub-category-item,.manufacturer-grid .manufacturer-item{text-align:center;margin:5px;width:285px;border:0px solid #000;border-radius:12px;}
 .sub-category-grid .sub-category-item .title,.manufacturer-grid .manufacturer-item .title{text-align:center;font-weight:700;font-size:.9em;display:block;overflow:hidden;padding:5px;}
@@ -637,13 +637,13 @@ td.fieldname{font-size:12px;}
 
 
 /* Styles used in  CategoryTemplateProductsinGridOrLines */
-.sub-category2-grid {margin-left:auto;margin-right:auto;width:auto;margin-bottom:1px;zoom:1;}
+.sub-category2-grid {text-align:center; margin-left:auto;margin-right:auto;width:auto;margin-bottom:1px;zoom:1;}
 .sub-category2-grid:after{content:".";display:block;clear:both;height:0;font-size:0;line-height:0;visibility:hidden;}
 .sub-category2-grid a{color:#FFF;font-size:1.4em;font-weight:700;}
 /*<EDC==  sets picture img size   */
 .sub-category2-grid a img { width:212px;height:212px;border-radius:10px;background:transparent; }
 /*==EDC>*/
-.sub-category2-grid .item-box{float:left;text-align:center;vertical-align:text-top;}
+.sub-category2-grid .item-box{float:none;display:inline-block;text-align:center;vertical-align:text-top;}
 /*<EDC==  sets Block size   */
 .sub-category2-grid .sub-category2-item{text-align:center;margin-left:70px;width:auto;border:0px solid #000;border-radius:12px;}
 .sub-category2-grid .sub-category2-item .title{text-align:center;font-weight:700;font-size:.9em;display:block;overflow:hidden;padding:5px;}
@@ -1354,12 +1354,10 @@ td.fieldname{font-size:12px;}
 .profile-page .user-last-posts .topic-body .quote{padding:5px;border:dashed 1px #000;background-color:#fff;}
 .profile-page .user-last-posts .topic-data{background:#f3f3f3;padding:3px;color:#FFF;font-size:.9em;}
 
-
 /* BB CODE EDITOR */
 .toolbar{padding:2px;display:inline;}
 .toolbar .button{background:url(images/bbeditor-button-bg.gif) repeat-x;padding:2px;margin-right:2px;border:#cec6b5 1px solid;}
 .toolbar .button:hover{border:#333 1px solid;}
-
 
 /* BBCODES */
 pre{white-space:pre-wrap;white-space:normal;word-wrap:break-word;}
@@ -1375,3 +1373,18 @@ pre{white-space:pre-wrap;white-space:normal;word-wrap:break-word;}
 .csharpcode .attr{color:red;}
 .csharpcode .alt{background-color:#f4f4f4;width:100%;margin:0;}
 .csharpcode .lnum{color:#606060;}
+
+/*  INSTAGRAM  IGslider */
+.myslider{width:500px;height:500px;border:1px solid gray;margin:0 auto}
+.instaslider-wrapper{width:500px;height:500px;background:#e7e7e7;overflow:hidden}
+.instaslider-wrapper ul{width:10000px;list-style:none}
+.instaslider-wrapper ul li{float:left}
+div.error{width:100%;height:100%;background:rgba(0,0,0,0.6);color:#fff;font-family:arial;text-align:center}
+div.error p{width:300px;line-height:180%;margin:0 auto;padding:167px 0 0}
+.instaslider-wrapper ul li img{width:500px;height:auto}
+.instaslider-nav{position:relative;top:-50%;margin:-50px 0 0}
+.instaslider-nav .prev,.instaslider-nav .next{border:0;width:100px;height:100px;cursor:pointer;background:#072835;text-indent:-9999px}
+.instaslider-nav .prev:hover{background-position:-2px -100px}
+.instaslider-nav .next:hover{background-position:-98px -100px}
+.instaslider-nav .prev{float:left;background:#072835 url(images/arrow_sprite.png) 0 0}
+.instaslider-nav .next{float:right;background:#072835 url(images/arrow_sprite.png) -100px 0}

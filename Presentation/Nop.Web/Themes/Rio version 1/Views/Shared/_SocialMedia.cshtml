@@ -1,0 +1,77 @@
+﻿@* -- INSTAGRAM STREAM------*@ 
+<style>
+/*instagram-stream CSS*/
+.instagram-list{width:100%; box-sizing:border-box; padding:0 0 10px 0; margin:0; list-style:none; overflow:hidden;}
+.instagram-stream{width:100%; margin:0 auto; display:table; padding:2px; box-sizing:border-box;}
+.instagram-stream li{list-style:none; float:left; box-sizing:border-box;}
+.instagram-stream li img{ width:100%; height:auto;position :relative;overflow:hidden;}
+.instagram-stream .is-text{margin-left:auto;margin-right:auto;width:auto;}
+.instagram-stream .is-text .title{padding:0px 0px 0px 0;margin:0 0 0 0px;font-weight:700;text-transform:lowercase;font-size:1.0em;color:#fff;text-align:center;}
+</style>
+@{ Html.AddScriptParts("~/Scripts/instagram-stream.jquery.js"); } 
+<div class="instagram-stream">
+    <div class="is-text">
+        <div class="title">
+            <strong>Follow us</strong>
+        </div>
+        <div class="title">
+            <a href="https://www.instagram.com/riograndepickups" target="_blank"  > <img style="border-radius:10px" src="~/Themes/Rio version 1/Content/images/instagram.png" /> </a>
+            <a href="https://www.facebook.com/Rio-Grande-Pickups-366900360050970/?ref=ts" target="_blank"  > <img style="border-radius:10px" src="~/Themes/Rio version 1/Content/images/facebook.png" /> </a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+            $('.instagram-stream').instagramstream({
+                limit: 12, // number of images to fetch
+                username: 'riograndepickups', // your username
+                overlay: false, // add overlay layer of hover effect
+                textContainer: '.is-text', // default: '.is-text', pass jQuery object or selector
+                textPosition: '0', // place that at this position
+                textSize: '1', // size of text e.g. 1 - has size like one image; 2 - has size of two images etc.
+                imageQuality: 'standard'
+            });
+</script>
+
+@*  //==== Combining nivoSlider with InstaFeed =================================
+
+    <!-- instafeed -->
+    <script src="/uploads/js/instafeed.min.js"></script>
+    <!-- nivoslider -->
+    <script src="/uploads/js/jquery.nivo.slider.pack.js"></script>
+
+    <!-- script starts -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+    var feed = new Instafeed({
+        get: 'tagged',
+        tagName: 'london',
+        clientId: 'xxxxxxxxxxxxxxxxxxxxxxxx',
+        limit: '20',
+        resolution: 'standard_resolution',
+        template: '<a href="{{link}}" target="_blank"><img src="{{image}}" style="width: 278px; height: 278px;" /></a>'
+    });
+    feed.run();
+    });
+    </script>
+
+    <script type="text/javascript">
+    $(window).load(function() {
+    $('#instafeed').nivoSlider({
+        effect: 'fade',
+        animSpeed: 3000,
+        pauseTime: 12000,
+        directionNav: false,
+        controlNav: false,
+        controlNavThumbs: false,
+        pauseOnHover: true,
+        manualAdvance: false,
+        randomStart: true
+    });
+    });
+    </script>
+    <!-- script ends -->
+
+    <!-- data starts -->
+    <div id="instafeed" class="nivoSlider" style="width: 278px; height: 278px;"></div>
+    <!-- data ends -->
+*@

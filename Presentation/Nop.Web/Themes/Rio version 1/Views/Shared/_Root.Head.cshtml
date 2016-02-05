@@ -13,6 +13,7 @@
     Html.AppendScriptParts("~/Scripts/jquery.validate.unobtrusive.min.js");
     Html.AppendScriptParts("~/Scripts/jquery.validate.min.js");
     Html.AppendScriptParts("~/Scripts/jquery-1.10.2.min.js");
+    Html.AppendScriptParts("~/Scripts/ml.responsive.imagemap.js");  // Responsive Image Map resizing ===EDC===   
 
     //X-UA-Compatible tag
     var commonSettings = EngineContext.Current.Resolve<CommonSettings>();
@@ -20,10 +21,6 @@
     {
         Html.AppendHeadCustomParts(string.Format("<meta http-equiv=\"X-UA-Compatible\" content=\"{0}\"/>", commonSettings.XuaCompatibleValue));
     }
-}
-@* Responsive Image Map resizing ===EDC===   *@
-@{
-    Html.AddScriptParts("~/Scripts/ml.responsive.imagemap.js");
 }
 <!DOCTYPE html>
 <html @Html.Partial("LanguageAttributes")>
@@ -48,16 +45,13 @@
     {
         @StackExchange.Profiling.MiniProfiler.RenderIncludes()
     }
-    <!--Powered by nopCommerce - http://www.nopCommerce.com-->
-    <!--Copyright (c) 2008-2014-->
 </head>
 <body>
-    @RenderBody()
+    @RenderBody() @* Renders Content of_Root.cshtml  *@
     @Html.NopCssFiles(this.Url, ResourceLocation.Foot)
     @Html.NopScripts(this.Url, ResourceLocation.Foot)
-    @* Responsive Image Map resizing ===EDC===   *@
-    <script type="text/javascript">
-       $(document).ready(function () {mlResizeMap();} );
+    <script type="text/javascript">  //  Responsive Image Map resizing ===EDC===   
+        $(document).ready(function () { mlResizeMap(); });
     </script>
 </body>
 </html>
